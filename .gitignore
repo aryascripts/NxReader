@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Switch specific
+*.nro
+*.elf
+*.nso
+*.nacp
+*.pfs0
+build/**
