@@ -17,6 +17,9 @@ public:
   // Default window with given title and size
   Window(const char* title, int* w, int* h);
 
+  // Destructor
+  ~Window();
+
 private:
 
   // SDL_Window for rendering

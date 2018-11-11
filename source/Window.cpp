@@ -22,7 +22,7 @@ Window::Window(const char* title) {
   SDL_Texture* bg_texture = SDL_CreateTextureFromSurface(renderer, bg_surface);	// Create texture from surface
 
   // Create font:
-  TTF_Font* font = TTF_OpenFont("romfs:/resources/fonts/small_font.ttf", 24);
+  TTF_Font* font = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 24);
   SDL_Color color = {0, 0, 0};
 
   // Clear renderer:
@@ -51,4 +51,9 @@ Window::Window(const char* title) {
 Window::Window(const char* title, int* w, int* h) {
   window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, *w, *h, SDL_WINDOW_BORDERLESS);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+}
+
+Window::~Window() {
+  SDL_DestroyRenderer(renderer);
+  SDL_DestroyWindow(window);
 }
