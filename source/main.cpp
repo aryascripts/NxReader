@@ -13,11 +13,10 @@ int main() {
 	App app;
 	app.start();
 
-	// Game loop:
 	while (app.isRunning) {
 		app.update();
 	}
 
-  SDL_Quit();				// SDL cleanup
-	return EXIT_SUCCESS; 	// Clean exit to HBMenu
+	SDL_Quit();
+	return EXIT_SUCCESS;
 }

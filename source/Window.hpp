@@ -7,6 +7,10 @@
 class Window  {
 
 public:
+
+  // Window width and height
+  int w, h;
+
   // Default constructor, make a full screen window
   // Default Title
   Window();
@@ -20,6 +24,11 @@ public:
   // Destructor
   ~Window();
 
+  // Clear window
+  void clearWindow();
+
+  SDL_Renderer* getRenderer();
+
 private:
 
   // SDL_Window for rendering
@@ -27,6 +36,9 @@ private:
 
   // SDL Renderer for displaying textures
   SDL_Renderer* renderer;
+
+  void setWidthHeight();
+
 
 };
 
