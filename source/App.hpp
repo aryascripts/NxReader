@@ -10,6 +10,7 @@ class App {
 public:
   int isRunning;
   WindowState winState;
+  Orientation orientation;
 
   App();
   ~App();
@@ -25,6 +26,11 @@ private:
   Menu* mainMenu;
 
   TextContent* sansSmall;
+
+  int frameTime;
+  int frameStart;
+  const int FRAMES_PER_SECOND = 20;
+  const int FRAME_DELAY = 1000 / 20;
 
 };
 

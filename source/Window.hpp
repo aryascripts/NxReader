@@ -29,6 +29,8 @@ public:
 
   SDL_Renderer* getRenderer();
 
+  void update();
+
 private:
 
   // SDL_Window for rendering

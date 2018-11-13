@@ -11,6 +11,7 @@
 App::App() {
   isRunning = 1;
   winState = MENU;
+  orientation = LAND;
 }
 
 App::~App() {
@@ -32,22 +33,36 @@ void App::start() {
   // SDL_Color color = {255, 255, 255};
   // sansSmall->renderText(mainWindow, color, 20, 710, 270.0);
 
-  mainMenu = new Menu(mainWindow);
+  mainMenu = new Menu(mainWindow, "NxReader - Books List");
 
 }
 
 void App::update() {
-  mainMenu->renderHeader();
+  frameStart = SDL_GetTicks();
+
+  mainWindow->clearWindow();
+
+  mainMenu->renderHeader(orientation);
 
   hidScanInput();
   u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
   handleInput(&kDown);
 
+  mainWindow->update();
+
+  frameTime = SDL_GetTicks() - frameStart;
+  if(FRAME_DELAY > frameTime) {
+    // delay the time that is remaining in this frame.
+    SDL_Delay(FRAME_DELAY - frameTime);
+  }
 }
 
 void App::handleInput(u64 *kDown) {
-  if(*kDown & KEY_PLUS || *kDown & KEY_MINUS) {
+  if(*kDown & KEY_PLUS) {
     // TODO ask for confirmation ?
     isRunning = 0;
-  };
+  }
+  else if(*kDown & KEY_MINUS) {
+    orientation = PORT;
+  }
 }

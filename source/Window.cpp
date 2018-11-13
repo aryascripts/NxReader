@@ -46,6 +46,10 @@ Window::~Window() {
   SDL_DestroyWindow(window);
 }
 
+void Window::update() {
+  SDL_RenderPresent(renderer);
+}
+
 void Window::setWidthHeight() {
   SDL_GetRendererOutputSize(renderer, &w, &h);
 }
@@ -57,5 +61,4 @@ SDL_Renderer* Window::getRenderer() {
 void Window::clearWindow() {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
   SDL_RenderClear(renderer);
-  SDL_RenderPresent(renderer);
 }

@@ -3,6 +3,7 @@
 
 #include "Window.hpp"
 #include "TextContent.hpp"
+#include "Util.hpp"
 #include <SDL2/SDL.h>
 
 class Menu {
@@ -14,7 +15,7 @@ public:
   Menu(Window* win, const char* title);
 
   //Renders the header to the given window in the constructor
-  void renderHeader();
+  void renderHeader(Orientation orient);
   void setHeaderText(const char* text);
   void init(const char* text);
 
@@ -22,6 +23,8 @@ private:
   SDL_Rect* headerRect;
   Window* window;
   TextContent* headerText;
+
+  SDL_Point headerTextPos;
 
   TTF_Font* headerFont;
   SDL_Color headerColor;
