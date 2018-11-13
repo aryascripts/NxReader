@@ -13,14 +13,15 @@ Menu::Menu(Window* win, const char* text) {
 }
 
 void Menu::init(const char* text) {
-  headerFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 26);
+  headerFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 28);
 
   headerRect->x = 0;
   headerRect->y = 0;
-  headerRect->w = 1280;
+  headerRect->w = window->w;
   headerRect->h = 60;
 
   headerText = new TextContent(headerFont, "NxHeader");
+  headerColor = {0, 0, 0};
 
 }
 
@@ -29,7 +30,6 @@ void Menu::renderHeader() {
                          0, 195, 227, SDL_ALPHA_OPAQUE);
   SDL_RenderFillRect(window->getRenderer(), headerRect);
 
-  SDL_Color color = {255, 255, 255};
-  headerText->renderText(window, color, 0, headerRect->h/2, 0);
+  headerText->renderText(window, headerColor, 20, headerRect->h/2 - 20, 0);
 
 }

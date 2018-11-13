@@ -24,6 +24,7 @@ private:
   TextContent* headerText;
 
   TTF_Font* headerFont;
+  SDL_Color headerColor;
   char* text;
 };
 

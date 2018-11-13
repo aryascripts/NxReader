@@ -13,6 +13,11 @@ App::App() {
   winState = MENU;
 }
 
+App::~App() {
+  delete mainWindow;
+  delete mainMenu;
+}
+
 void App::start() {
   SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
@@ -31,17 +36,12 @@ void App::start() {
 
 }
 
-App::~App() {
-  // delete mainWindow;
-  // delete sansSmall;
-}
-
 void App::update() {
+  mainMenu->renderHeader();
+
   hidScanInput();
   u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
   handleInput(&kDown);
-
-  mainMenu->renderHeader();
 
 }
 

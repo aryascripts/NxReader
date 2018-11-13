@@ -21,17 +21,17 @@ Window::Window(const char* title) {
   setWidthHeight();
 
 
-  SDL_Surface* bg_surface = IMG_Load("romfs:/resources/images/main.png");			// Read image as surface
-  SDL_Texture* bg_texture = SDL_CreateTextureFromSurface(renderer, bg_surface);	// Create texture from surface
+  // SDL_Surface* bg_surface = IMG_Load("romfs:/resources/images/main.png");			// Read image as surface
+  // SDL_Texture* bg_texture = SDL_CreateTextureFromSurface(renderer, bg_surface);	// Create texture from surface
 
   // Clear renderer:
-  SDL_RenderClear(renderer);
+  // SDL_RenderClear(renderer);
 
   // Copy bg texture to renderer:
-  SDL_RenderCopy(renderer, bg_texture, NULL, NULL);
+  // SDL_RenderCopy(renderer, bg_texture, NULL, NULL);
 
   // Render
-  SDL_RenderPresent(renderer);						// Render renderer
+  // SDL_RenderPresent(renderer);						// Render renderer
 
 }
 

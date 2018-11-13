@@ -10,13 +10,14 @@
 
 
 int main() {
-	App app;
-	app.start();
+	App* app = new App();
+	app->start();
 
-	while (app.isRunning) {
-		app.update();
+	while (app->isRunning) {
+		app->update();
 	}
 
+	delete app;
 	SDL_Quit();
 	return EXIT_SUCCESS;
 }
