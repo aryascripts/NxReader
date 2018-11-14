@@ -16,7 +16,7 @@ App::App() {
 
 App::~App() {
   delete mainWindow;
-  delete mainMenu;
+  // delete mainMenu;
 }
 
 void App::start() {
@@ -25,28 +25,19 @@ void App::start() {
 	TTF_Init();
 	romfsInit();
 
-  // TTF_Font* font = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 24);
-
-
   mainWindow = new Window("NxReader-Main");
-  // sansSmall = new TextContent(font, "Hello World");
-  // SDL_Color color = {255, 255, 255};
-  // sansSmall->renderText(mainWindow, color, 20, 710, 270.0);
-
-  mainMenu = new Menu(mainWindow, "NxReader - Books List");
-
 }
 
 void App::update() {
   frameStart = SDL_GetTicks();
 
-  mainWindow->clearWindow();
-
-  mainMenu->renderHeader(orientation);
-
   hidScanInput();
   u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
   handleInput(&kDown);
+
+  mainWindow->clearWindow();
+
+  mainMenu->renderHeader(orientation);
 
   mainWindow->update();
 

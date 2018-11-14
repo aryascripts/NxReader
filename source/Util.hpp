@@ -12,6 +12,6 @@ const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
 class Util {
   static float getAngle(Orientation o);
-}
+};
 
 #endif

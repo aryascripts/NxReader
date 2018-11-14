@@ -13,6 +13,7 @@ public:
   // Constructors, one with a title
   Menu(Window* win);
   Menu(Window* win, const char* title);
+  ~Menu();
 
   //Renders the header to the given window in the constructor
   void renderHeader(Orientation orient);

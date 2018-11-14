@@ -13,6 +13,10 @@ Menu::Menu(Window* win, const char* text) {
   init(text);
 }
 
+Menu::~Menu() {
+  delete headerText;
+}
+
 void Menu::init(const char* text) {
   headerFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 28);
 
