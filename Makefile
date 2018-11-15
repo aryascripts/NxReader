@@ -29,43 +29,44 @@ include $(DEVKITPRO)/libnx/switch_rules
 #     - icon.jpg
 #     - <libnx folder>/default_icon.jpg
 #---------------------------------------------------------------------------------
-TARGET		  	:= NxReader
-BUILD		  		:= build
-SOURCES		  	:= source
-DATA		  		:= data
-INCLUDES	  	:= include
-EXEFS_SRC	  	:= exefs_src
-ROMFS         := romfs
-APP_TITLE     := NxReader
-APP_AUTHOR    := ckarcz
-APP_VERSION   := 0.1
-ICON 					:= romfs/resources/icon.jpg
+TARGET			:= NxReader
+BUILD				:= build
+SOURCES     := source
+DATA		    := data
+INCLUDES	  := include
+EXEFS_SRC	  := exefs_src
+ROMFS		    := romfs
+APP_TITLE	  := NxReader
+APP_AUTHOR	:= amanb014
+APP_VERSION	:= 0.1
+ICON		    := romfs/resources/icon.jpg
 
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH					:=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -ftls-model=local-exec
+ARCH	      :=	-march=armv8-a -mtune=cortex-a57 -mtp=soft -fPIE -ftls-model=local-exec
 
-CFLAGS				:=	-g -Wall -O3 -ffunction-sections \
-							$(ARCH) $(DEFINES)
+CFLAGS	    :=	-g -Wall -O3 -ffunction-sections \
+		            $(ARCH) $(DEFINES)
 
-CFLAGS				+=	$(INCLUDE) -D__SWITCH__
+CFLAGS	    +=	$(INCLUDE) -D__SWITCH__
 
-CXXFLAGS			:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
+CXXFLAGS	  := $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 
-ASFLAGS				:=	-g $(ARCH)
-LDFLAGS				=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+ASFLAGS	    :=	-g $(ARCH)
+LDFLAGS	     =	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS					:= -lfreetype -lSDL2_mixer -lmodplug -lmpg123 \
-							 	 -lvorbisidec -logg -lSDL2_ttf -lSDL2_image \
-							 	 -lpng -ljpeg `sdl2-config --libs` \
-							 	 `freetype-config --libs`
+LIBS	      :=  -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lSDL2 \
+								-lpng -lz -ljpeg \
+								-lglad -lEGL -lglapi -ldrm_nouveau -lstdc++ \
+								-lvorbisidec -logg -lmpg123 -lmodplug \
+								-lnx -lm -lfreetype -lbz2
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib
 #---------------------------------------------------------------------------------
-LIBDIRS				:= $(PORTLIBS) $(LIBNX)
+LIBDIRS	    := $(PORTLIBS) $(LIBNX)
 
 #---------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add additional
