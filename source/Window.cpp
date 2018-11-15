@@ -1,5 +1,6 @@
 
 #include "Window.hpp"
+#include "Util.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -10,35 +11,29 @@
 #include <SDL2/SDL_mixer.h>
 
 Window::Window() {
-  window = SDL_CreateWindow("NxReader-Main", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+  createBaseWindow();
   setWidthHeight();
+
+  // _textureTarget = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
+  // SDL_SetRenderTarget(renderer, _textureTarget);
 }
 
 Window::Window(const char* title) {
-  window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+  createBaseWindow();
   setWidthHeight();
 
-
-  // SDL_Surface* bg_surface = IMG_Load("romfs:/resources/images/main.png");			// Read image as surface
-  // SDL_Texture* bg_texture = SDL_CreateTextureFromSurface(renderer, bg_surface);	// Create texture from surface
-
-  // Clear renderer:
-  // SDL_RenderClear(renderer);
-
-  // Copy bg texture to renderer:
-  // SDL_RenderCopy(renderer, bg_texture, NULL, NULL);
-
-  // Render
-  // SDL_RenderPresent(renderer);						// Render renderer
-
+  // _textureTarget = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
+  // SDL_SetRenderTarget(renderer, _textureTarget);
 }
 
-Window::Window(const char* title, int* w, int* h) {
-  window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, *w, *h, SDL_WINDOW_BORDERLESS);
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-  setWidthHeight();
+Window::Window(const char* title, int* wx, int* hy) {
+  w = *wx;
+  h = *hy;
+  window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, SDL_WINDOW_BORDERLESS);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE | SDL_RENDERER_SOFTWARE);
+
+  // _textureTarget = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, w, h);
+  // SDL_SetRenderTarget(renderer, _textureTarget);
 }
 
 Window::~Window() {
@@ -46,8 +41,30 @@ Window::~Window() {
   SDL_DestroyWindow(window);
 }
 
+void Window::createBaseWindow() {
+  window = SDL_CreateWindow("NxReader-Main", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_FULLSCREEN_DESKTOP);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_TARGETTEXTURE);
+}
+
 void Window::update() {
+  // Clear the render target so it displays on the screen
+  // SDL_SetRenderTarget(renderer, NULL);
+
+  // SDL_RenderClear(renderer);
+
+  // Copy the textureTarget to the real screen renderer, with any flips
+  // if(Util::getOrientation() == PORT) {
+    // SDL_RenderCopyEx(renderer, _textureTarget, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
+  // }
+  // else {
+    // SDL_RenderCopy(renderer, _textureTarget);
+  // }
+
+  // Display to the screen
   SDL_RenderPresent(renderer);
+
+  // Set the texture target to internal texture for next frame
+  // SDL_SetRenderTarget(renderer, _textureTarget);
 }
 
 void Window::setWidthHeight() {

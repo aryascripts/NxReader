@@ -16,7 +16,7 @@ public:
   ~Menu();
 
   //Renders the header to the given window in the constructor
-  void renderHeader(Orientation orient);
+  void renderHeader();
   void setHeaderText(const char* text);
   void init(const char* text);
 

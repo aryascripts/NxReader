@@ -10,7 +10,6 @@ class App {
 public:
   int isRunning;
   WindowState winState;
-  Orientation orientation;
 
   App();
   ~App();

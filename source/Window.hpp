@@ -31,6 +31,8 @@ public:
 
   void update();
 
+  void createBaseWindow();
+
 private:
 
   // SDL_Window for rendering
@@ -38,6 +40,8 @@ private:
 
   // SDL Renderer for displaying textures
   SDL_Renderer* renderer;
+
+  SDL_Texture* _textureTarget;
 
   void setWidthHeight();
 

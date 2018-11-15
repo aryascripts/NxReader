@@ -11,7 +11,6 @@
 App::App() {
   isRunning = 1;
   winState = MENU;
-  orientation = LAND;
 }
 
 App::~App() {
@@ -20,6 +19,7 @@ App::~App() {
 }
 
 void App::start() {
+  Util::setOrientation(PORT_R);
   SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
 	TTF_Init();
@@ -37,7 +37,7 @@ void App::update() {
   handleInput(&kDown);
 
   mainWindow->clearWindow();
-  mainMenu->renderHeader(orientation);
+  mainMenu->renderHeader();
   mainWindow->update();
 
   frameTime = SDL_GetTicks() - frameStart;
@@ -53,6 +53,6 @@ void App::handleInput(u64 *kDown) {
     isRunning = 0;
   }
   else if(*kDown & KEY_MINUS) {
-    orientation = PORT;
+    Util::setOrientation(PORT_R);
   }
 }
