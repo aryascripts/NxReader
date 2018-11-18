@@ -28,9 +28,8 @@ void Menu::init(const char* text) {
   headerTextPos.y = headerRect->h - 20;
 
   headerText = new TextContent(headerFont, text);
-  headerColor = {255, 255, 255};
 
-  char** ebooks;
+  // char** ebooks;
   int file_count = Util::listFilesFromFolder("sdmc:/ebooks", &ebooks);
 
 }
@@ -38,6 +37,6 @@ void Menu::init(const char* text) {
 void Menu::renderHeader() {
   SDL_SetRenderDrawColor(window->getRenderer(), 0, 195, 227, SDL_ALPHA_OPAQUE);
   SDL_RenderFillRect(window->getRenderer(), headerRect);
-  headerText->renderText(window, headerColor, headerTextPos.x, headerTextPos.y, 270.0f);
+  headerText->renderText(window, (SDL_Color){255,255,255}, headerTextPos.x, headerTextPos.y, 270.0f);
 
 }

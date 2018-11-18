@@ -7,9 +7,15 @@
 #include "MenuItem.hpp"
 #include <SDL2/SDL.h>
 
-class Menu {
+struct Point {
+  int x;
+  int y;
+};
 
+class Menu {
 public:
+  char** ebooks;
+
   // Constructors, one with a title
   Menu(Window* win);
   Menu(Window* win, const char* title);
@@ -25,11 +31,11 @@ private:
   Window* window;
   TextContent* headerText;
 
-  SDL_Point headerTextPos;
+  Point headerTextPos;
 
   TTF_Font* headerFont;
-  SDL_Color headerColor;
   char* text;
+
 };
 
 #endif
