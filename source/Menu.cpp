@@ -38,5 +38,12 @@ void Menu::renderHeader() {
   SDL_SetRenderDrawColor(window->getRenderer(), 0, 195, 227, SDL_ALPHA_OPAQUE);
   SDL_RenderFillRect(window->getRenderer(), headerRect);
   headerText->renderText(window, (SDL_Color){255,255,255}, headerTextPos.x, headerTextPos.y, 270.0f);
+}
+
+void Menu::renderPage(int *page) {
+  MenuItem items[12];
+  int total = sizeof(ebooks);
+  int start = Util::startingIndexForPage(total, *page, 12);
+
 
 }

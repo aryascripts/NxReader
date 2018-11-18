@@ -29,7 +29,7 @@ public:
   static int getFullWidth();
   static int listFilesFromFolder(const char *path, char ***list);
 
-  static int startingIndexForPage(const int total, const int page, const int count);
+  static int startingIndexForPage(int total, int page, int count);
 
 };
 

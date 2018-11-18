@@ -1,8 +1,4 @@
-#include <stdio.h>
 #include <switch.h>
-#include <time.h>
-#include <string.h>
-
 #include <SDL2/SDL.h>
 
 #include "main.hpp"
@@ -13,7 +9,7 @@ int main() {
 	App* app = new App();
 	app->start();
 
-	while (app->isRunning) {
+	while (app->isRunning && appletMainLoop()) {
 		app->update();
 	}
 

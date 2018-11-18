@@ -15,7 +15,7 @@ App::App() {
 
 App::~App() {
   delete mainWindow;
-  // delete mainMenu;
+  delete mainMenu;
 }
 
 void App::start() {
