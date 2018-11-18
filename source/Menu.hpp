@@ -4,12 +4,12 @@
 #include "Window.hpp"
 #include "TextContent.hpp"
 #include "Util.hpp"
+#include "MenuItem.hpp";
 #include <SDL2/SDL.h>
 
 class Menu {
 
 public:
-
   // Constructors, one with a title
   Menu(Window* win);
   Menu(Window* win, const char* title);

@@ -66,3 +66,19 @@ int Util::listFilesFromFolder(const char *path, char ***list) {
     closedir(directory);
     return count;
 }
+
+int Util::startingIndexForPage(const int total, const int page, const int count) {
+  // count = count per page
+  // page = which page?
+  // page always starts with 0
+  // total = total in array
+
+  // Find the maximum amount of pages that is valid
+  int max_pages = total / count;
+  if(total % count == 0) max_pages--;
+
+  if(page > max_pages) return max_pages;
+
+  // return the start index of the page requested
+  return (count * page);
+}
