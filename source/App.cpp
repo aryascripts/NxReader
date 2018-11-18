@@ -37,8 +37,8 @@ void App::update() {
   handleInput(&kDown);
 
   mainWindow->clearWindow();
-  mainMenu->renderHeader();
-  mainWindow->update();
+  // mainMenu->renderHeader();
+  // mainWindow->update();
 
   frameTime = SDL_GetTicks() - frameStart;
   if(FRAME_DELAY > frameTime) {
@@ -51,8 +51,5 @@ void App::handleInput(u64 *kDown) {
   if(*kDown & KEY_PLUS) {
     // TODO ask for confirmation ?
     isRunning = 0;
-  }
-  else if(*kDown & KEY_MINUS) {
-    Util::setOrientation(PORT_R);
   }
 }

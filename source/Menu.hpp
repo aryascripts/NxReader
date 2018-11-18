@@ -6,6 +6,8 @@
 #include "Util.hpp"
 #include "MenuItem.hpp"
 #include <SDL2/SDL.h>
+#include <vector>
+#include <string>
 
 struct Point {
   int x;
@@ -14,7 +16,7 @@ struct Point {
 
 class Menu {
 public:
-  char** ebooks;
+  std::vector<std::string> *ebooks;
 
   // Constructors, one with a title
   Menu(Window* win);
@@ -26,6 +28,8 @@ public:
   void setHeaderText(const char* text);
   void init(const char* text);
   void renderPage(int *page);
+
+  int listFilesFromFolder(const char *path, std::vector<std::string> *list);
 
 private:
   SDL_Rect* headerRect;

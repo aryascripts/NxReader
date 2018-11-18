@@ -1,6 +1,10 @@
 #include "Menu.hpp"
 #include "Util.hpp"
+#include <dirent.h>
+#include <malloc.h>
 #include <SDL2/SDL.h>
+#include <vector>
+#include <string>
 
 Menu::Menu(Window* win) {
   window = win;
@@ -14,10 +18,13 @@ Menu::Menu(Window* win, const char* text) {
 
 Menu::~Menu() {
   delete headerText;
+  delete ebooks;
 }
 
 void Menu::init(const char* text) {
   headerFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 28);
+  printf("Loaded headerFont\n");
+
 
   headerRect->x = 0;
   headerRect->y = 0;
@@ -30,8 +37,15 @@ void Menu::init(const char* text) {
   headerText = new TextContent(headerFont, text);
 
   // char** ebooks;
-  int file_count = Util::listFilesFromFolder("sdmc:/ebooks", &ebooks);
+  ebooks = new std::vector<std::string>();
 
+  (*ebooks).push_back("hello world");
+  printf("%s", (*ebooks).at(0));
+
+  int file_count = listFilesFromFolder("sdmc:/ebooks/", ebooks);
+  printf("File count, %d\n", file_count);
+  // printf("books loaded... size %lu\n", (unsigned long)sizeof(**ebooks));
+  // printf("first book name.. %s", ebooks[0]);
 }
 
 void Menu::renderHeader() {
@@ -42,8 +56,37 @@ void Menu::renderHeader() {
 
 void Menu::renderPage(int *page) {
   MenuItem items[12];
-  int total = sizeof(ebooks);
-  int start = Util::startingIndexForPage(total, *page, 12);
+}
+
+int Menu::listFilesFromFolder(const char *path, std::vector<std::string> *list) {
+  printf("Starting dir read.. \n");
+
+  DIR *dir = NULL;
+  struct dirent *file = NULL;
+
+  dir = opendir("sdmc:/ebooks/");
+  printf("tried to open dir \n");
+
+  if(dir == NULL) {
+      printf("dir was empty/could not open.. \n");
+      return 0;
+  }
+  printf("directory is valid \n");
 
 
+  (*list).clear();
+  printf("clear vector \n");
+
+  file = readdir(dir);
+  printf("read first element.. \n");
+
+  while(file != NULL){
+    printf("name: %s\n", file->d_name);
+    (*list).push_back(std::string(file->d_name));
+    file = readdir(dir);
+  }
+  printf("vector size, %lu", (unsigned long) (*list).size());
+
+  closedir(dir);
+  return (int)(*list).size();
 }

@@ -37,38 +37,9 @@ int Util::getFullWidth() {
   }
 }
 
-int Util::listFilesFromFolder(const char *path, char ***list) {
-    int count = 0;
-    DIR *directory = NULL;
-    struct dirent *element = NULL;
 
-    directory = opendir(path);
-    if(directory != NULL) {
-        return 0;
-    }
 
-    *list = NULL;
-    element = readdir(directory);
-    while(element != NULL){
-        count++;
-        element = readdir(directory);
-    }
-
-    rewinddir(directory);
-    *list = (char**) calloc(count, sizeof(char *));
-
-    count = 0;
-    element = readdir(directory);
-    while(NULL != element){
-        (*list)[count++] = element->d_name;
-        element = readdir(directory);
-    }
-
-    closedir(directory);
-    return count;
-}
-
-int Util::startingIndexForPage(const int total, const int page, const int count) {
+int startingIndexForPage(const int total, const int page, const int count) {
   // count = count per page
   // page = which page?
   // page always starts with 0

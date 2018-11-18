@@ -27,10 +27,10 @@ public:
   static Orientation getOrientation();
 
   static int getFullWidth();
-  static int listFilesFromFolder(const char *path, char ***list);
-
-  static int startingIndexForPage(int total, int page, int count);
 
 };
+
+int startingIndexForPage(int total, int page, int count);
+
 
 #endif
