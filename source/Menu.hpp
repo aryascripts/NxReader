@@ -30,6 +30,9 @@ private:
   TTF_Font* headerFont;
   SDL_Color headerColor;
   char* text;
+
+  MenuItem items[12];
+
 };
 
 #endif
