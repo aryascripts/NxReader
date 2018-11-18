@@ -7,7 +7,7 @@
 TextContent::TextContent(TTF_Font* f, const char* t) {
   font = f;
   text = t;
-  top = {0, 0};
+  *top = {0, 0};
 }
 
 void TextContent::renderText(Window* win, SDL_Color color, int x, int y, double angle) {
@@ -15,15 +15,15 @@ void TextContent::renderText(Window* win, SDL_Color color, int x, int y, double 
   _texture = SDL_CreateTextureFromSurface(win->getRenderer(), _surface);
   SDL_FreeSurface(_surface);
 
-  rect.x = x;
-  rect.y = y;
-  rect.w = _surface->w;
-  rect.h = _surface->h;
+  rect->x = x;
+  rect->y = y;
+  rect->w = _surface->w;
+  rect->h = _surface->h;
 
-  SDL_RenderCopyEx(win->getRenderer(), _texture, NULL, &rect, angle, &top, SDL_FLIP_NONE);
+  SDL_RenderCopyEx(win->getRenderer(), _texture, NULL, rect, angle, top, SDL_FLIP_NONE);
   SDL_DestroyTexture(_texture);
 }
 
 int TextContent::getHeight() {
-  return rect.h;
+  return rect->h;
 }

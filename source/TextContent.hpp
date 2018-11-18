@@ -18,8 +18,8 @@ public:
 private:
   SDL_Surface* _surface;
   SDL_Texture* _texture;
-  SDL_Rect rect;
-  SDL_Point top;
+  SDL_Rect* rect;
+  SDL_Point* top;
 
   TTF_Font* font;
   int* size;
