@@ -1,8 +1,9 @@
 # NxReader [WIP]
 
-eBook reader for the Nintendo Switch Homebrew. 
+eBook reader for the Nintendo Switch Homebrew.
 
 TODO:
+  1. [ ] Move list files to Util class
   1. [ ] Display list of files in sdmc:/ebooks/*.epub
   1. [ ] Implement HTML renderer
   1. [ ] Open epub file (zip format)
