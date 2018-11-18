@@ -19,6 +19,8 @@ public:
   const int FRAMES_PER_SECOND = 20;
   const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
+  static int page;
+
   static Orientation orientation;
   static float getAngle();
   static void setOrientation(Orientation o);
@@ -28,6 +30,7 @@ public:
   static int listFilesFromFolder(const char *path, char ***list);
 
   static int startingIndexForPage(const int total, const int page, const int count);
+
 };
 
 #endif

@@ -2,8 +2,6 @@
 #include "Util.hpp"
 #include <SDL2/SDL.h>
 
-
-
 Menu::Menu(Window* win) {
   window = win;
   init("NxReader");

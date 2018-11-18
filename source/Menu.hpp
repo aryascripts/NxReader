@@ -4,7 +4,7 @@
 #include "Window.hpp"
 #include "TextContent.hpp"
 #include "Util.hpp"
-#include "MenuItem.hpp";
+#include "MenuItem.hpp"
 #include <SDL2/SDL.h>
 
 class Menu {
@@ -30,9 +30,6 @@ private:
   TTF_Font* headerFont;
   SDL_Color headerColor;
   char* text;
-
-  MenuItem items[12];
-
 };
 
 #endif

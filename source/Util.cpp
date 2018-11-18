@@ -4,6 +4,7 @@
 #include <malloc.h>
 
 Orientation Util::orientation = LAND;
+int Util::page = 0;
 
 void Util::setOrientation(Orientation o) {
   orientation = o;
@@ -77,6 +78,7 @@ int Util::startingIndexForPage(const int total, const int page, const int count)
   int max_pages = total / count;
   if(total % count == 0) max_pages--;
 
+  // requested for more than you can access
   if(page > max_pages) return max_pages;
 
   // return the start index of the page requested
