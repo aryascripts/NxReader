@@ -28,8 +28,8 @@ private:
 
   int frameTime;
   int frameStart;
-  const int FRAMES_PER_SECOND = 20;
-  const int FRAME_DELAY = 1000 / 20;
+  const int FRAMES_PER_SECOND = 5;
+  const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
 };
 
