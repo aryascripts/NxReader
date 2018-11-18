@@ -25,6 +25,7 @@ public:
   static Orientation getOrientation();
 
   static int getFullWidth();
+  static int listFilesFromFolder(const char *path, char ***list);
 };
 
 #endif

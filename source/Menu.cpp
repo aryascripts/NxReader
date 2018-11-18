@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 
 
+
 Menu::Menu(Window* win) {
   window = win;
   init("NxReader");
@@ -30,6 +31,9 @@ void Menu::init(const char* text) {
 
   headerText = new TextContent(headerFont, text);
   headerColor = {255, 255, 255};
+
+  char** ebooks;
+  int file_count = Util::listFilesFromFolder("sdmc:/ebooks", &ebooks);
 
 }
 
