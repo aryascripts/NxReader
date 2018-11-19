@@ -1,6 +1,9 @@
 #ifndef _NXREADER_UTILS
 #define _NXREADER_UTILS
 
+#include <vector>
+#include <string>
+
 enum WindowState { MENU, BOOK };
 enum Orientation { LAND,
                    LAND_R,
@@ -31,6 +34,6 @@ public:
 };
 
 int startingIndexForPage(int total, int page, int count);
-
+int listFilesFromFolder(const char *path, std::vector<std::string> *list);
 
 #endif

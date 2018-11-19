@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <malloc.h>
+#include <vector>
+#include <string>
 
 Orientation Util::orientation = LAND;
 int Util::page = 0;
@@ -37,7 +39,38 @@ int Util::getFullWidth() {
   }
 }
 
+int listFilesFromFolder(const char *path, std::vector<std::string> *list) {
+  printf("Starting dir read.. \n");
 
+  DIR *dir = NULL;
+  struct dirent *file = NULL;
+
+  dir = opendir("sdmc:/ebooks/");
+  printf("tried to open dir \n");
+
+  if(dir == NULL) {
+      printf("dir was empty/could not open.. \n");
+      return 0;
+  }
+  printf("directory is valid \n");
+
+
+  (*list).clear();
+  printf("clear vector \n");
+
+  file = readdir(dir);
+  printf("read first element.. \n");
+
+  while(file != NULL){
+    printf("name: %s\n", file->d_name);
+    (*list).push_back(std::string(file->d_name));
+    file = readdir(dir);
+  }
+  printf("vector size, %lu", (unsigned long) (*list).size());
+
+  closedir(dir);
+  return (int)(*list).size();
+}
 
 int startingIndexForPage(const int total, const int page, const int count) {
   // count = count per page

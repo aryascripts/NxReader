@@ -3,8 +3,6 @@
 #include <dirent.h>
 #include <malloc.h>
 #include <SDL2/SDL.h>
-#include <vector>
-#include <string>
 
 Menu::Menu(Window* win) {
   window = win;
@@ -56,37 +54,4 @@ void Menu::renderHeader() {
 
 void Menu::renderPage(int *page) {
   MenuItem items[12];
-}
-
-int Menu::listFilesFromFolder(const char *path, std::vector<std::string> *list) {
-  printf("Starting dir read.. \n");
-
-  DIR *dir = NULL;
-  struct dirent *file = NULL;
-
-  dir = opendir("sdmc:/ebooks/");
-  printf("tried to open dir \n");
-
-  if(dir == NULL) {
-      printf("dir was empty/could not open.. \n");
-      return 0;
-  }
-  printf("directory is valid \n");
-
-
-  (*list).clear();
-  printf("clear vector \n");
-
-  file = readdir(dir);
-  printf("read first element.. \n");
-
-  while(file != NULL){
-    printf("name: %s\n", file->d_name);
-    (*list).push_back(std::string(file->d_name));
-    file = readdir(dir);
-  }
-  printf("vector size, %lu", (unsigned long) (*list).size());
-
-  closedir(dir);
-  return (int)(*list).size();
 }
