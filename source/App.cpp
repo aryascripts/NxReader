@@ -38,6 +38,7 @@ void App::update() {
 
   mainWindow->clearWindow();
   mainMenu->renderHeader();
+  mainMenu->renderPage(1);
   mainWindow->update();
 
   frameTime = SDL_GetTicks() - frameStart;

@@ -27,7 +27,7 @@ public:
   void renderHeader();
   void setHeaderText(const char* text);
   void init(const char* text);
-  void renderPage(int *page);
+  void renderPage(int page);
 
 private:
   SDL_Rect* headerRect;
@@ -37,6 +37,7 @@ private:
   Point headerTextPos;
 
   TTF_Font* headerFont;
+  TTF_Font* itemsFont;
   char* text;
 
 };

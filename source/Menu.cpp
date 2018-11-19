@@ -21,16 +21,17 @@ Menu::~Menu() {
 
 void Menu::init(const char* text) {
   headerFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 28);
+  itemsFont = TTF_OpenFont("romfs:/resources/fonts/Verdana.ttf", 22);
   printf("Loaded headerFont\n");
 
   headerRect = new SDL_Rect;
   headerRect->x = 0;
   headerRect->y = 0;
-  headerRect->w = 60;
+  headerRect->w = 80;
   headerRect->h = window->h;
   printf("set header positions, %d %d %d %d\n", headerRect->x, headerRect->y, headerRect->w, headerRect->h);
 
-  headerTextPos.x = 15;
+  headerTextPos.x = headerRect->x + 20;
   headerTextPos.y = headerRect->h - 20;
   printf("set header text positions\n");
 
@@ -44,13 +45,23 @@ void Menu::init(const char* text) {
 }
 
 void Menu::renderHeader() {
-  printf("rendering header ... ");
+  // printf("rendering header ... ");
   SDL_SetRenderDrawColor(window->getRenderer(), 0, 195, 227, SDL_ALPHA_OPAQUE);
   SDL_RenderFillRect(window->getRenderer(), headerRect);
   headerText->renderText(window, (SDL_Color){255,255,255}, headerTextPos.x, headerTextPos.y, 270.0f);
-  printf("finished rendering header \n");
+  // printf("finished rendering header \n");
 }
 
-void Menu::renderPage(int *page) {
-  MenuItem items[12];
+void Menu::renderPage(int page) {
+
+  int width = 50;
+  int startX = headerRect->w;
+
+  for(int i = 0; i < 20; i++) {
+    TextContent itemText(itemsFont, (*ebooks).at(i).c_str());
+    SDL_Rect textRect = { (width*i)+startX, 0, width, window->h };
+    SDL_SetRenderDrawColor(window->getRenderer(), 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_RenderFillRect(window->getRenderer(), &textRect);
+    itemText.renderText(window, (SDL_Color){0,0,0}, textRect.x + 10, textRect.h - 20, 270.0f);
+  }
 }
