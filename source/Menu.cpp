@@ -62,9 +62,10 @@ void Menu::renderPage(int page) {
 
   printf("\nPAGES INFO: %d %d %d %d", width, startX, perPage, startIndex);
 
+  int count = 0;
   for(int i = startIndex; i < endIndex; i++) {
     TextContent itemText(itemsFont, (*ebooks).at(i).c_str());
-    SDL_Rect textRect = { (width*i)+startX, 0, width, window->h };
+    SDL_Rect textRect = { (width * count++)+startX, 0, width, window->h };
     SDL_SetRenderDrawColor(window->getRenderer(), 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(window->getRenderer(), &textRect);
     itemText.renderText(window, (SDL_Color){0,0,0}, textRect.x + 10, textRect.h - 20, 270.0f);
