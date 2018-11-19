@@ -29,8 +29,6 @@ public:
   void init(const char* text);
   void renderPage(int *page);
 
-  int listFilesFromFolder(const char *path, std::vector<std::string> *list);
-
 private:
   SDL_Rect* headerRect;
   Window* window;

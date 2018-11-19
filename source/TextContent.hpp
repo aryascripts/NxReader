@@ -8,6 +8,7 @@ class TextContent {
 
 public:
   TextContent(TTF_Font* font, const char* t);
+  ~TextContent();
 
   void renderText(Window* win, SDL_Color color, int x, int y, double angle);
 

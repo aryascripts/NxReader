@@ -7,7 +7,11 @@
 TextContent::TextContent(TTF_Font* f, const char* t) {
   font = f;
   text = t;
-  *top = {0, 0};
+  rect = new SDL_Rect;
+}
+
+TextContent::~TextContent() {
+  delete rect;
 }
 
 void TextContent::renderText(Window* win, SDL_Color color, int x, int y, double angle) {
@@ -20,7 +24,8 @@ void TextContent::renderText(Window* win, SDL_Color color, int x, int y, double 
   rect->w = _surface->w;
   rect->h = _surface->h;
 
-  SDL_RenderCopyEx(win->getRenderer(), _texture, NULL, rect, angle, top, SDL_FLIP_NONE);
+  SDL_Point top{0,0};
+  SDL_RenderCopyEx(win->getRenderer(), _texture, NULL, rect, angle, &top, SDL_FLIP_NONE);
   SDL_DestroyTexture(_texture);
 }
 

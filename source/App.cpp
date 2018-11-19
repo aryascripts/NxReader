@@ -37,8 +37,8 @@ void App::update() {
   handleInput(&kDown);
 
   mainWindow->clearWindow();
-  // mainMenu->renderHeader();
-  // mainWindow->update();
+  mainMenu->renderHeader();
+  mainWindow->update();
 
   frameTime = SDL_GetTicks() - frameStart;
   if(FRAME_DELAY > frameTime) {
