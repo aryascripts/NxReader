@@ -56,8 +56,13 @@ void Menu::renderPage(int page) {
 
   int width = 50;
   int startX = headerRect->w;
+  int perPage = 20;
+  int startIndex = startingIndexForPage((*ebooks).size(), page, perPage);
+  int endIndex = startIndex + perPage;
 
-  for(int i = 0; i < 20; i++) {
+  printf("\nPAGES INFO: %d %d %d %d", width, startX, perPage, startIndex);
+
+  for(int i = startIndex; i < endIndex; i++) {
     TextContent itemText(itemsFont, (*ebooks).at(i).c_str());
     SDL_Rect textRect = { (width*i)+startX, 0, width, window->h };
     SDL_SetRenderDrawColor(window->getRenderer(), 255, 255, 255, SDL_ALPHA_OPAQUE);
