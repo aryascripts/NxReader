@@ -27,7 +27,7 @@ public:
   void renderHeader();
   void setHeaderText(const char* text);
   void init(const char* text);
-  void renderPage(int page);
+  void renderBooks(int *startX);
 
 private:
   SDL_Rect* headerRect;

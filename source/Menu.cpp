@@ -52,20 +52,28 @@ void Menu::renderHeader() {
   // printf("finished rendering header \n");
 }
 
-void Menu::renderPage(int page) {
+void Menu::renderBooks(int *startX) {
 
   int width = 50;
-  int startX = headerRect->w;
-  int perPage = 20;
-  int startIndex = startingIndexForPage((*ebooks).size(), page, perPage);
-  int endIndex = startIndex + perPage;
+  // int startX = headerRect->w;
+  // int perPage = 20;
+  int max = (*ebooks).size();
+  // int startIndex = startingIndexForPage((*ebooks).size(), page, perPage);
+  // int endIndex = startIndex + perPage;
 
-  printf("\nPAGES INFO: %d %d %d %d", width, startX, perPage, startIndex);
+  // printf("\nPAGES INFO: %d %d %d %d", width, startX, perPage, startIndex);
 
   int count = 0;
-  for(int i = startIndex; i < endIndex; i++) {
+  for(int i = 0; i < max; i++) {
+    int posX = (width * count++) + (*startX);
+
+    // If the box is not displayed on the screen
+    if((posX + width) < 0 || posX > window->w) {
+      continue;
+    }
+
     TextContent itemText(itemsFont, (*ebooks).at(i).c_str());
-    SDL_Rect textRect = { (width * count++)+startX, 0, width, window->h };
+    SDL_Rect textRect = { posX, 0, width, window->h };
     SDL_SetRenderDrawColor(window->getRenderer(), 255, 255, 255, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(window->getRenderer(), &textRect);
     itemText.renderText(window, (SDL_Color){0,0,0}, textRect.x + 10, textRect.h - 20, 270.0f);

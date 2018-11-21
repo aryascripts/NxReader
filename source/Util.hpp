@@ -19,7 +19,7 @@ public:
   static int* WINDOW_W;
   static int* WINDOW_H;
 
-  static const int FRAMES_PER_SECOND = 20;
+  static const int FRAMES_PER_SECOND = 60;
   static const int FRAME_DELAY = 1000 / FRAMES_PER_SECOND;
 
   static int page;

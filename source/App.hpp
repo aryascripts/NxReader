@@ -10,6 +10,7 @@ class App {
 public:
   int isRunning;
   WindowState winState;
+  u32 prev_touches;
 
   App();
   ~App();
@@ -20,9 +21,13 @@ public:
 private:
   void run();
   void handleInput(u64* kDown);
+  void handleTouches(u32* touches);
 
   Window* mainWindow;
   Menu* mainMenu;
+
+  int touch_start_x, affect_x, old_x, start_x;
+  touchPosition start_touch;
 
   TextContent* sansSmall;
 
