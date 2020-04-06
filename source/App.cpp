@@ -1,7 +1,6 @@
 #include <switch.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
 #include "App.hpp"
 #include "Util.hpp"
 #include "TextContent.hpp"
@@ -41,7 +40,7 @@ void App::update() {
   u32 touches = hidTouchCount();
   // printf("calling input methods\n");
   handleInput(&kDown);
-  handleTouches(&touches);
+  handleTouches(&touches, mainMenu->maxHeight);
 
   mainWindow->clearWindow();
   mainMenu->renderBooks(&start_x);
@@ -62,9 +61,8 @@ void App::handleInput(u64 *kDown) {
   }
 }
 
-void App::handleTouches(u32 *touches) {
+void App::handleTouches(u32 *touches, int maxHeight) {
   touchPosition touch;
-  // printf("if statement 1\n");
   if(prev_touches != *touches) {
 
     // last frame, user was not touching, this frame they are.
@@ -78,26 +76,33 @@ void App::handleTouches(u32 *touches) {
       old_x = start_x;
     }
     if(*touches == 0) {
-      // printf("affect_x = 0\n");
       affect_x = 0; //false
       touch_start_x = -1;
     }
 
-    // printf("prev_touches = *touches\n");
     prev_touches = *touches;
   }
 
-
-  if(affect_x && *touches > 0 && touch_start_x > 0) {
-    // printf("reading touches\n");
-    hidTouchRead(&touch, 0);
-    // printf("setting start_x for frame\n");
-    start_x = old_x + (touch.px - touch_start_x);
+  int end_x = start_x + maxHeight;
+  // Don't do anything if we are scrolling past the end
+  if (end_x < 1280) {
+    start_x = old_x;
+    return;
   }
+  
+  // Only scroll the main window (starting point) if it is larger than the window
+  if (maxHeight > 1280) {
+    if(affect_x && *touches > 0 && touch_start_x > 0) {
+      // printf("reading touches\n");
+      hidTouchRead(&touch, 0);
+      // printf("setting start_x for frame\n");
+      start_x = old_x + (touch.px - touch_start_x);
+    }
 
-  // printf("start_x > 80?\n");
-  if(start_x > 80) {
-    // printf("reset start_x\n");
-    start_x = 80;
+    // printf("start_x > 80?\n");
+    if(start_x > 80) {
+      // printf("reset start_x\n");
+      start_x = 80;
+    }
   }
 }

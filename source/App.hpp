@@ -21,7 +21,7 @@ public:
 private:
   void run();
   void handleInput(u64* kDown);
-  void handleTouches(u32* touches);
+  void handleTouches(u32* touches, int maxHeight);
 
   Window* mainWindow;
   Menu* mainMenu;

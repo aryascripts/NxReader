@@ -58,6 +58,8 @@ void Menu::renderBooks(int *startX) {
   // int startX = headerRect->w;
   // int perPage = 20;
   int max = (*ebooks).size();
+  maxHeight = max * 50 + 80;
+
   // int startIndex = startingIndexForPage((*ebooks).size(), page, perPage);
   // int endIndex = startIndex + perPage;
 

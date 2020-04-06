@@ -17,6 +17,7 @@ struct Point {
 class Menu {
 public:
   std::vector<std::string> *ebooks;
+  int maxHeight;
 
   // Constructors, one with a title
   Menu(Window* win);
